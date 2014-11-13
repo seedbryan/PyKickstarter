@@ -8,7 +8,7 @@ setup(
    version="0.0.1",
 
    # Packages
-   packages=["PyKickstarter"],
+   packages=["pykickstarter"],
 
    # Include additional files into the package
    include_package_data=True,

@@ -14,6 +14,7 @@ class PyKickstarter(object):
     API_URLS = {
             'authenticate' : API_ROOT + "/xauth/access_token",
             'search' : API_ROOT + "/v1/projects/search",
+            'get_projects' : API_ROOT + "/v1/projects",
             'get_categories' : API_ROOT + "/v1/categories",
             'category_search' : API_ROOT + "/v1/categories/%d/projects/popular", # Needs the Category ID
             'picks' : API_ROOT + "/v1/categories/projects/picks"
@@ -39,6 +40,10 @@ class PyKickstarter(object):
 
     def get_backed_projects(self):
         response = self.api.request("GET", self.user.urls['api']['backed_projects'])
+        return PyKickstarterProjectGenerator(response, self.api)
+
+    def get_projects(self):
+        response = self.api.request("GET", PyKickstarter.API_URLS['get_projects'])
         return PyKickstarterProjectGenerator(response, self.api)
 
     def get_starred_projects(self):

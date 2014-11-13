@@ -1,6 +1,7 @@
 #! /usr/bin/python
 
 from collections import namedtuple
+import time
 
 try:
     from PyKickstarterUpdates import *
@@ -33,6 +34,7 @@ class PyKickstarterProjectGenerator(object):
         idx = 0
         while (idx < len(self.projects)):
             project = PyKickstarterProject(self.projects[idx], self.api)
+            time.sleep(5)
             yield project
             if (self.more != None and idx == len(self.projects) - 1):
                 data = self.api.request("GET", self.more)
